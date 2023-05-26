@@ -1,0 +1,248 @@
+Phase 3: Syntax Tree
+====================
+
+ALLOCATE C1 CURSOR FOR RESULT SET LOC1 ;
+
+Valid Statement: 
+
+ALLOCATE CURSOR
+│
+└── < allocate cursor statement > ::= ALLOCATE CURSOR < allocate cursor statement >
+    │
+    └── < allocate cursor statement > ::= ALLOCATE < extended cursor name > [ INSENSITIVE ] [ SCROLL ] CURSOR FOR < extended statement name >
+        │
+        ├── < extended cursor name > ::= [ < scope option > ] < simple value specification >
+        │   │
+        │   ├── < scope option > ::= GLOBAL | LOCAL
+        │   │
+        │   └── < simple value specification > ::= < parameter name > | < embedded variable name > | < literal >
+        │       │
+        │       ├── < parameter name > ::= < colon > < identifier >
+        │       │   │
+        │       │   ├── < colon > ::= :
+        │       │   │
+        │       │   └── < identifier > ::= [ < introducer > < character set specification > ] < actual identifier >
+        │       │       │
+        │       │       ├── < introducer > ::= < underscore >
+        │       │       │   │
+        │       │       │   └── < underscore > ::= _
+        │       │       │
+        │       │       ├── < character set specification > ::= < standard character repertoire name > 
+        │       │       │   │                                   | < implementation-defined character repertoire name > 
+        │       │       │   │                                   | < user-defined character repertoire name > 
+        │       │       │   │                                   | < standard universal character form-of-use name > 
+        │       │       │   │                                   | < implementation-defined universal character form-of-use name >
+        │       │       │   │
+        │       │       │   ├── < standard character repertoire name > ::= < character set name >
+        │       │       │   │
+        │       │       │   ├── < implementation-defined character repertoire name > ::= < character set name >
+        │       │       │   │   │
+        │       │       │   │   └── < character set name > ::= [ < schema name > < period > ] < SQL language identifier >
+        │       │       │   │       │
+        │       │       │   │       ├── < schema name > ::= [ < catalog name > < period > ] < unqualified schema name >
+        │       │       │   │       │   │
+        │       │       │   │       │   ├── < catalog name > ::= < identifier >
+        │       │       │   │       │   │
+        │       │       │   │       │   ├── < period > ::= .
+        │       │       │   │       │   │
+        │       │       │   │       │   └── < unqualified schema name > ::= < identifier >
+        │       │       │   │       │
+        │       │       │   │       ├── < period > ::= .
+        │       │       │   │       │
+        │       │       │   │       └── < unqualified schema name > ::= < identifier >
+        │       │       │   │           │
+        │       │       │   │           └── < identifier > ::= [ < introducer > < character set specification > ] < actual identifier >
+        │       │       │   │               │
+        │       │       │   │               ├── < introducer > ::= < underscore >
+        │       │       │   │               │   │
+        │       │       │   │               │   └── < underscore > ::= _
+        │       │       │   │               │
+        │       │       │   │               ├── < character set specification >
+        │       │       │   │               │
+        │       │       │   │               └── < actual identifier > ::= < regular identifier > | < delimited identifier >
+        │       │       │   │                   │
+        │       │       │   │                   ├──< regular identifier > ::= < identifier body >
+        │       │       │   │                   │  │
+        │       │       │   │                   │  └── < identifier body > ::= < identifier start > [ { < underscore > | < identifier part > } ... ]
+        │       │       │   │                   │      │
+        │       │       │   │                   │      ├── < identifier start > ::= !! See the Syntax rules
+        │       │       │   │                   │      │
+        │       │       │   │                   │      ├── < underscore > ::= _
+        │       │       │   │                   │      │
+        │       │       │   │                   │      └── < identifier part > ::= < identifier start > | < digit >
+        │       │       │   │                   │          │
+        │       │       │   │                   │          ├── < identifier start > ::= !! See the Syntax rules
+        │       │       │   │                   │          │
+        │       │       │   │                   │          └── < digit > ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+        │       │       │   │                   │
+        │       │       │   │                   └── < delimited identifier > ::= < double quote > < delimited identifier body > < double quote >
+        │       │       │   │                       │
+        │       │       │   │                       ├── < double quote > ::= "
+        │       │       │   │                       │
+        │       │       │   │                       ├── < delimited identifier body > ::= < delimited identifier part > ...
+        │       │       │   │                       │   │
+        │       │       │   │                       │   └── < delimited identifier part> ::= < nondoublequote character > | < doublequote symbol >
+        │       │       │   │                       │       │
+        │       │       │   │                       │       ├── < nondoublequote character > ::= !! See the syntax rules
+        │       │       │   │                       │       │
+        │       │       │   │                       │       └── < doublequote symbol > ::= < double quote > < double quote >
+        │       │       │   │                       │           │
+        │       │       │   │                       │           ├── < double quote > ::= "
+        │       │       │   │                       │           │
+        │       │       │   │                       │           └── < double quote > ::= "
+        │       │       │   │                       │
+        │       │       │   │                       └── < double quote > ::= "
+        │       │       │   │
+        │       │       │   ├── < user-defined character repertoire name > ::=  < character set name >
+        │       │       │   │
+        │       │       │   ├── < standard universal character form-of-use name > ::= < character set name >
+        │       │       │   │
+        │       │       │   └── < implementation-defined universal character form-of-use name > ::= <character set name>
+        │       │       │
+        │       │       └── < actual identifier > ::= < regular identifier > | < delimited identifier >
+        │       │           │
+        │       │           ├── < regular identifier > ::= < identifier body >
+        │       │           │   │
+        │       │           │   └── < identifier body > ::= < identifier start > [ { < underscore > | < identifier part > } ... ]
+        │       │           │       │
+        │       │           │       ├── < identifier start > ::= !! See the Syntax rules
+        │       │           │       │
+        │       │           │       ├── < underscore > ::= _
+        │       │           │       │
+        │       │           │       └── < identifier part > ::= < identifier start > | < digit >
+        │       │           │           │
+        │       │           │           ├── < identifier start > ::= !! See the Syntax rules
+        │       │           │           │
+        │       │           │           └── < digit > ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+        │       │           │
+        │       │           └── < delimited identifier > ::= < double quote > < delimited identifier body > < double quote >
+        │       │               │
+        │       │               ├── < double quote > ::= "
+        │       │               │
+        │       │               ├── < delimited identifier body > ::= < delimited identifier part > ...
+        │       │               │
+        │       │               └── < double quote > ::= "
+        │       │
+        │       ├── < embedded variable name > ::= < colon > < host identifier >
+        │       │
+        │       └── < literal > ::= < signed numeric literal > | < general literal >
+        │           │
+        │           ├── < signed numeric literal > ::= [ < sign > ] < unsigned numeric literal >
+        │           │
+        │           └── < general literal > ::= < character string literal > | < national character string literal > | < bit string literal > | < hex string literal > | < datetime literal > | < interval literal >
+        │
+        └── < extended statement name > ::= [ < scope option > ] < simple value specification >
+            │
+            ├── < scope option > ::= GLOBAL | LOCAL
+            │
+            └── < simple value specification > ::= < parameter name > | < embedded variable name > | < literal >
+                │
+                ├── < parameter name > ::= < colon > < identifier >
+                │   │
+                │   ├── < colon > ::= :
+                │   │
+                │   └── < identifier > ::= [ < introducer > < character set specification > ] < actual identifier >
+                │       │
+                │       ├── < introducer > ::= < underscore >
+                │       │   │
+                │       │   └── < underscore > ::= _
+                │       │
+                │       ├── < character set specification > ::= < standard character repertoire name > 
+                │       │   │                                   | < implementation-defined character repertoire name > 
+                │       │   │                                   | < user-defined character repertoire name > 
+                │       │   │                                   | < standard universal character form-of-use name > 
+                │       │   │                                   | < implementation-defined universal character form-of-use name >
+                │       │   │
+                │       │   ├── < standard character repertoire name > ::= < character set name >
+                │       │   │
+                │       │   ├── < implementation-defined character repertoire name > ::= < character set name >
+                │       │   │   │
+                │       │   │   └── < character set name > ::= [ < schema name > < period > ] < SQL language identifier >
+                │       │   │       │
+                │       │   │       ├── < schema name > ::= [ < catalog name > < period > ] < unqualified schema name >
+                │       │   │       │   │
+                │       │   │       │   ├── < catalog name > ::= < identifier >
+                │       │   │       │   │
+                │       │   │       │   ├── < period > ::= .
+                │       │   │       │   │
+                │       │   │       │   └── < unqualified schema name > ::= < identifier >
+                │       │   │       │
+                │       │   │       ├── < period > ::= .
+                │       │   │       │
+                │       │   │       └── < unqualified schema name > ::= < identifier >
+                │       │   │           │
+                │       │   │           └── < identifier > ::= [ < introducer > < character set specification > ] < actual identifier >
+                │       │   │               │
+                │       │   │               ├── < introducer > ::= < underscore >
+                │       │   │               │   │
+                │       │   │               │   └── < underscore > ::= _
+                │       │   │               │
+                │       │   │               ├── < character set specification >
+                │       │   │               │
+                │       │   │               └── < actual identifier > ::= < regular identifier > | < delimited identifier >
+                │       │   │                   │
+                │       │   │                   ├──< regular identifier > ::= < identifier body >
+                │       │   │                   │  │
+                │       │   │                   │  └── < identifier body > ::= < identifier start > [ { < underscore > | < identifier part > } ... ]
+                │       │   │                   │      │
+                │       │   │                   │      ├── < identifier start > ::= !! See the Syntax rules
+                │       │   │                   │      │
+                │       │   │                   │      ├── < underscore > ::= _
+                │       │   │                   │      │
+                │       │   │                   │      └── < identifier part > ::= < identifier start > | < digit >
+                │       │   │                   │          │
+                │       │   │                   │          ├── < identifier start > ::= !! See the Syntax rules
+                │       │   │                   │          │
+                │       │   │                   │          └── < digit > ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+                │       │   │                   │
+                │       │   │                   └── < delimited identifier > ::= < double quote > < delimited identifier body > < double quote >
+                │       │   │                       │
+                │       │   │                       ├── < double quote > ::= "
+                │       │   │                       │
+                │       │   │                       ├── < delimited identifier body > ::= < delimited identifier part > ...
+                │       │   │                       │   │
+                │       │   │                       │   └── < delimited identifier part> ::= < nondoublequote character > | < doublequote symbol >
+                │       │   │                       │       │
+                │       │   │                       │       ├── < nondoublequote character > ::= !! See the syntax rules
+                │       │   │                       │       │
+                │       │   │                       │       └── < doublequote symbol > ::= < double quote > < double quote >
+                │       │   │                       │           │
+                │       │   │                       │           ├── < double quote > ::= "
+                │       │   │                       │           │
+                │       │   │                       │           └── < double quote > ::= "
+                │       │   │                       │
+                │       │   │                       └── < double quote > ::= "
+                │       │   │
+                │       │   ├── < user-defined character repertoire name > ::=  < character set name >
+                │       │   │
+                │       │   ├── < standard universal character form-of-use name > ::= < character set name >
+                │       │   │
+                │       │   └── < implementation-defined universal character form-of-use name > ::= <character set name>
+                │       │
+                │       └── < actual identifier > ::= < regular identifier > | < delimited identifier >
+                │           │
+                │           ├── < regular identifier > ::= < identifier body >
+                │           │   │
+                │           │   └── < identifier body > ::= < identifier start > [ { < underscore > | < identifier part > } ... ]
+                │           │       │
+                │           │       ├── < identifier start > ::= !! See the Syntax rules
+                │           │       │
+                │           │       ├── < underscore > ::= _
+                │           │       │
+                │           │       └── < identifier part > ::= < identifier start > | < digit >
+                │           │           │
+                │           │           ├── < identifier start > ::= !! See the Syntax rules
+                │           │           │
+                │           │           └── < digit > ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+                │           │
+                │           └── < delimited identifier > ::= < double quote > < delimited identifier body > < double quote >
+                │               │
+                │               ├── < double quote > ::= "
+                │               │
+                │               ├── < delimited identifier body > ::= < delimited identifier part > ...
+                │               │
+                │               └── < double quote > ::= "
+                │
+                ├── < embedded variable name > ::= < colon > < host identifier >
+                │
+                └── < literal > ::= < signed numeric literal > | < general literal >
