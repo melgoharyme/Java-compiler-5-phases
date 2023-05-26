@@ -16,12 +16,6 @@ The project aims to provide an efficient and reliable solution for handling the 
 - Code generation for the allocated cursor
 - Optimization techniques for enhanced performance
 
-## Getting Started
-
-To get started with the Allocate Cursor statement Compiler project, follow these steps:
-
-1. Clone the repository: git clone https://github.com/your-username/Allocate-Cursor-statement-Compiler.git
-
 ## Contributing
 
 Contributions to the Allocate Cursor statement Compiler project are welcome! If you want to contribute, please follow these steps:
