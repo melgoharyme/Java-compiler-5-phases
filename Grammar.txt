@@ -1,5 +1,5 @@
-Phase 3: Syntax Tree
-====================
+Parse Tree
+==========
 
 ALLOCATE C1 CURSOR FOR RESULT SET LOC1 ;
 
