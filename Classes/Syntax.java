@@ -13,16 +13,16 @@ public class Syntax{
                 word[2].matches("CURSOR") && word[3].matches("FOR") &&
                 word[4].matches("RESULT") && word[5].matches("SET") && word[6].equals(word[6]) &&
                 grammar.endsWith(";")){
-            System.out.println("Valid Statement.");
-            System.out.println(grammar);
+            System.out.println("Valid Statement.\n");
+            System.out.println(grammar+"\n");
             System.out.println("< allocate cursor statement > ::= ALLOCATE < extended cursor name > [ INSENSITIVE ] [ SCROLL ] CURSOR FOR < extended statement name > ;\n");
             System.out.println("Parse Tree\n---------");
             System.out.println("< allocate cursor statement > ::= ALLOCATE CURSOR < allocate cursor statement >\n" +
-                        "└── < allocate cursor statement > ::= ALLOCATE < extended cursor name > [ INSENSITIVE ] [ SCROLL ] CURSOR FOR < extended statement name >\n" +
-                        "    ├── < extended cursor name > ::= [ < scope option > ] < simple value specification >\n" +
-                        "    │   └── < scope option > ::= GLOBAL | LOCAL\n" +
-                        "    └── < extended statement name > ::= [ < scope option > ] < simple value specification >\n" +
-                        "        └── < scope option > ::= GLOBAL | LOCAL\n");
+                    "└── < allocate cursor statement > ::= ALLOCATE < extended cursor name > [ INSENSITIVE ] [ SCROLL ] CURSOR FOR < extended statement name >\n" +
+                    "    ├── < extended cursor name > ::= [ < scope option > ] < simple value specification >\n" +
+                    "    │   └── < scope option > ::= GLOBAL | LOCAL\n" +
+                    "    └── < extended statement name > ::= [ < scope option > ] < simple value specification >\n" +
+                    "        └── < scope option > ::= GLOBAL | LOCAL\n");
             System.out.println("Done Syntax analysis.");
             Semantic semantic = new Semantic();
             return 1;
