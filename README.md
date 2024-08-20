@@ -31,4 +31,4 @@ Contributions to the Allocate Cursor statement Compiler project are welcome! If 
 If you have any questions or feedback regarding the Allocate Cursor statement Compiler project, please feel free to contact us:
 
 - Project Lead: Mahmoud Elgohary
-- Email: mahmoudelgoharydotme@gmail.com
+- Email: hello@melgohary.me
